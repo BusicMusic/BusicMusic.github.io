@@ -1,0 +1,123 @@
+/*
+Brendon Busic
+Personal Project - Liar's Dice (CSS Styling Code)
+Start Date: 09/21/2017
+Finsih Date: 10/12/2017 - Beta 1.0
+*/
+
+/*Pop-Up window code*/
+	.ruleWindow{
+		display: none;
+		position: fixed;
+		z-index: 1;
+		padding-top: 100px;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+	}
+	.ruleWindow-content{
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 50%;
+		text-align: left;
+	}
+	.close{
+		color: white;
+		float: right;
+		color: black;
+		font-size: 15pt;
+		text-shadow: 0px 0px 2px red;
+	}
+	.close:hover, .close:focus{
+		text-decoration: none;
+		cursor: pointer;
+		color: red;
+		text-shadow: 0px 0px 5px black;
+	}
+
+#license{
+	font-size:10pt;
+	opacity:0.5;
+}
+	
+html{
+	text-align: center;
+}
+#buttonMenu1, #buttonMenu2{
+	text-align:center;
+	display: inline-block;
+}
+#score{
+	text-align: left;
+}
+table{
+	margin:5px;
+	background: white;
+	float:left;
+	border-width: 2px;
+	border-collapse: collapse;
+	border-style:ridge;
+	border-color: slategrey;
+	text-align:center;
+	width:180px;
+}
+#topPort{
+	text-align: center;
+	display:inline-block;
+	padding: 5px;
+	border-style: ridge;
+	border-color: slategrey;
+	width:450px;
+	height: 375px;
+	background-color:white;
+}
+#buttonMenu1{
+	display: block;
+	float: left;
+	padding-left: 20px;
+	border:none;
+}
+#buttonMenu2{
+	display: block;
+	float: top;
+	position: absolute;
+	margin-left: 230px;
+	width: 100px;
+	border: none;
+}
+#rowA{
+	background:rgb(225,225,225);
+}
+#message{
+	text-align:center;
+	font-style: italic;
+	font-size: 12pt;
+}
+#tableHead{
+	text-align:center;
+}
+#col1{
+	width: 65px;
+}
+input[type=button]{
+	border-radius: 10px;
+	border-style: outset;
+	color: black;
+}
+input[type=button]:hover{
+	border-radius: 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+#rules, #newGame{
+	background:deepskyblue;
+	color:black;
+	border-style:outset;
+	border-color:deepskyblue;
+}
