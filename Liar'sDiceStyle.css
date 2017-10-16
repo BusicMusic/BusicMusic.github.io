@@ -2,7 +2,7 @@
 Brendon Busic
 Personal Project - Liar's Dice (CSS Styling Code)
 Start Date: 09/21/2017
-Finsih Date: 10/12/2017 - Beta 1.0
+Finsih Date: 10/??/2017 - Beta 1.1
 */
 
 /*Pop-Up window code*/
@@ -80,24 +80,26 @@ table{
 #buttonMenu1{
 	display: block;
 	float: left;
-	padding-left: 20px;
+	padding-left: 15px;
 	border:none;
+	width: 100px;
+	text-align:center;
 }
 #buttonMenu2{
 	display: block;
-	float: top;
-	position: absolute;
-	margin-left: 230px;
+	float:right;
 	width: 100px;
 	border: none;
+	padding-right: 15px;
+	text-align:center;
 }
 #rowA{
 	background:rgb(225,225,225);
 }
 #message{
-	text-align:center;
+	text-align: center;
 	font-style: italic;
-	font-size: 12pt;
+	font-size: 11pt;
 }
 #tableHead{
 	text-align:center;
@@ -120,4 +122,9 @@ input[type=button]:hover{
 	color:black;
 	border-style:outset;
 	border-color:deepskyblue;
+}
+
+IMG{
+	max-width: 92px;
+	height: auto;
 }
