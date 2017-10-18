@@ -1,8 +1,8 @@
 /*
 Brendon Busic
 Personal Project - Liar's Dice (CSS Styling Code)
-Start Date: 09/21/2017
-Finsih Date: 10/??/2017 - Beta 1.1
+Start Date: 10/15/2017
+Finsih Date: 10/18/2017 - Beta 1.2
 */
 
 /*Pop-Up window code*/
@@ -48,6 +48,9 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	
 html{
 	text-align: center;
+	padding:5px;
+	min-width: 492px;
+	margin: 0 auto;
 }
 #buttonMenu1, #buttonMenu2{
 	text-align:center;
@@ -60,10 +63,8 @@ table{
 	margin:5px;
 	background: white;
 	float:left;
-	border-width: 2px;
+	border-width: 0px;
 	border-collapse: collapse;
-	border-style:ridge;
-	border-color: slategrey;
 	text-align:center;
 	width:180px;
 }
@@ -72,10 +73,8 @@ table{
 	display:inline-block;
 	padding: 5px;
 	border-style: ridge;
-	border-color: slategrey;
 	width:450px;
 	height: 375px;
-	background-color:white;
 }
 #buttonMenu1{
 	display: block;
@@ -93,16 +92,10 @@ table{
 	padding-right: 15px;
 	text-align:center;
 }
-#rowA{
-	background:rgb(225,225,225);
-}
 #message{
 	text-align: center;
 	font-style: italic;
 	font-size: 11pt;
-}
-#tableHead{
-	text-align:center;
 }
 #col1{
 	width: 65px;
@@ -110,7 +103,6 @@ table{
 input[type=button]{
 	border-radius: 10px;
 	border-style: outset;
-	color: black;
 }
 input[type=button]:hover{
 	border-radius: 10px;
@@ -118,13 +110,10 @@ input[type=button]:hover{
 	cursor: pointer;
 }
 #rules, #newGame{
-	background:deepskyblue;
-	color:black;
 	border-style:outset;
-	border-color:deepskyblue;
 }
 
-IMG{
+img{
 	max-width: 92px;
 	height: auto;
 }
