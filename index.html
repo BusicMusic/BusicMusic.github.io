@@ -1,40 +1,31 @@
 <!--
 Personal Project - Liar's Dice (HTML Code)
 Start Date: 10/15/2017
-Finsih Date: 10/??/2017 - Beta 1.1
+Finsih Date: 10/18/2017 - Beta 1.2
 -->
 <!DOCTYPE html>
- <html style="min-width: 960px; margin: 0 auto;" id="html">
+ <html id="html">
   <head>
    <link href="Liar'sDiceStyle.css" rel="stylesheet" type="text/css">
-   <title>Liar's Dice - Beta 1.1</title>
-   
+   <link href="displayStyle.css" rel="stylesheet" type="text/css">
+   <title>Liar's Dice - Beta 1.2</title>
+   <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" type="image" sizes="16x16">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="author" content="Brendon Busic">
    <meta name="description" content="A Dice Game commonly reffered to 'Liar's Dice'. Easy to learn, free to play. ">
    <meta name="keywords" content="Dice, Gamble, Free, Dice Game, Liar's Dice">
-   <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" type="image/gif" sizes="16x16">
    
-    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-	<img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br/>
-	<i id="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative CommonsAttribution<br/> -NonCommercial-NoDerivatives 4.0 International License</a>.
-	<br/>Game Version: Liar's Dice - Beta 1.1</i><br/>
+	<br/><div id="gameVer">Game Version - Beta 1.2</div><br/>
   </head>
 
   <body onload="preset(), changeColour()">
 <p id="mainContent">
   <div id="topPort">
     <!--Button Code START-->
-<!--Left Button Menue-->
-	<fieldset id="buttonMenu1">
-<!--Roll Button-->
-	  <br/>
-	  <input id="rollButton" type="button" value="Roll Dice" onclick="rollCup(), npcRoll(), phase1(), findTotals()" /><br/><br/>
-<!--Bid Button-->
-	  <input id="bidButton" type="button" value="Bid" onclick="userBid(), phase2(), npcBidding(), npcCallOut(), updateWinStreak()" title="Click here to place your Bid"/>
-<!--drop down menu for bid numbers-->
-	   <form action="" name="bid">
+<!--Left Button Menue--><fieldset id="buttonMenu1">
+<!--Roll Button--><br/><input id="rollButton" type="button" value="Roll Dice" onclick="rollCup(), npcRoll(), phase1(), findTotals(), npcBidding()" title="Roll the dice, and start the game"/><br/><br/>
+<!--Bid Button--><input id="bidButton" type="button" value="Bid" onclick="userBid(), phase2(), npcCallOut(), updateWinStreak()" title="Click here to place your Bid"/>
+<!--drop down menu for bid numbers--><form action="" name="bid">
 	    <select id="dieAmount" title="How many dice or you betting on?"><!--Choosing the amount of dice-->
 	     <option value="1">One</option>
 	     <option value="2">Two</option>
@@ -78,8 +69,7 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	   </form>
 	   </br>
 	   
-<!--Liar Button-->
-	  <input id="liarButton" type="button" value="Liar!" onclick="callOut(), phase3(), updateWinStreak()" title="Accuse someone of being a Liar"/><br/>
+<!--Liar Button--><input id="liarButton" type="button" value="Liar!" onclick="callOut(), phase3(), updateWinStreak()" title="Accuse someone of being a Liar and end the round"/><br/>
 	  <select id="liarBox" title="Who are you accusing?">
 	   <option>NPC 1</option>
 	   <option>NPC 2</option>
@@ -87,51 +77,46 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	   <option>NPC 4</option>
 	   <option>NPC 5</option>
 	  </select><br/><br/>
-	  <!--Bid Table Code START-->
-	<br/><table id="bidTable" border>
+<!--Bid Again Button--><input id="bidAgain" type="button" value="Bid Again" onclick="npcBidding(), increaseBids(), phase4()" title="All Players make another bid and the round continues"/>
+	 <!--Bid Table Code START--><br/><table id="bidTable" border title="A table displaying the current bids of each player">
 	 <tr id="tableHead"><td colspan="2">Current Bids</td></tr>
 	 <tr id="rowA">
-	  <td id="col1">You</td>
-	  <td id="userBid">? - ?'s</td>
-	 </tr>
-	 <tr id="rowB">
 	  <td id="col1">NPC 1</td>
 	  <td id="npc1Bid">? - ?'s</td>
 	 </tr>
-	 <tr id="rowA">
+	 <tr id="rowB">
 	  <td id="col1">NPC 2</td>
 	  <td id="npc2Bid">? - ?'s</td>
 	 </tr>
-	 <tr id="rowB">
+	 <tr id="rowA">
 	  <td id="col1">NPC 3</td>
 	  <td id="npc3Bid">? - ?'s</td>
 	 </tr>
-	 <tr id="rowA">
+	 <tr id="rowB">
 	  <td id="col1">NPC 4</td>
 	  <td id="npc4Bid">? - ?'s</td>
 	 </tr>
-	 <tr id="rowB">
+	 <tr id="rowA">
 	  <td id="col1">NPC 5</td>
 	  <td id="npc5Bid">? - ?'s</td>
 	 </tr>
+	 <tr id="rowB">
+	  <td id="col1" style="font-style: italic">You</td>
+	  <td id="userBid">? - ?'s</td>
+	 </tr>
 	</table>	
 	<!--Bid Table Code END-->
-	<br/>
-	<i style="text-align:center; font-size:10pt;">Ten 4's will show up as 10 - 4's</i>
+	<i id="note" style="text-align:center; font-size:10pt;">*Ten 4's will show up as 10 - 4's</i>
 	</fieldset>
-<!--Right Button Menue-->
-	<fieldset id="buttonMenu2">
-	  <fieldset id="score">
+<!--Right Button Menue--><fieldset id="buttonMenu2">
+<!--Win Streak Menu--><fieldset id="score" title="A table displaying your current win streak and your best win streak for this session">
 	   <div id="currentWinStreak">Current Win Streak: 0</div><br/>
 	   <div id="bestWinStreak">Best Win Streak: 0</div>
 	  </fieldset><br/>
-	  <input id="newGame" type="button" value="Start a New Game" onclick="newGame()" title="Start a New Game"/>
-<!--Next Round Button-->
-	  <br/><br/><input id="nextRoundButton" type="button" value="Next Round" onclick="nextRound(), updateWinStreak()" title="Continue to the Next Round"/><br/><br/>
-<!--How to Play Button-->
-	  <input type="button" value="How to Play" id="rules" title="Click here for a pop-up of Rules and Instructions"/><br/>
-<!--Score Table Code START-->
-	<table id="scoreTable" border>
+<!--New Game Button--><input id="newGame" type="button" value="Start a New Game" onclick="newGame()" title="Start a New Game"/>
+<!--Next Round Button--><br/><br/><input id="nextRoundButton" type="button" value="Next Round" onclick="nextRound(), updateWinStreak()" title="Continue to the Next Round"/><br/><br/>
+<!--How to Play Button--><input type="button" value="How to Play" id="rules" title="Click here for a pop-up of Rules and Instructions"/><br/>
+<!--Score Table Code START--><table id="scoreTable" border title="A table displaying the total Wins and Losses for each player this session">
 	 <tr id="tableHead">
 	  <td colspan="3";>Score Chart</td>
 	 </tr>
@@ -141,7 +126,7 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	  <td>Losses</td>
 	 </tr>
 	 <tr id="rowB">
-	  <td id="col1">You</td>
+	  <td id="col1" style="font-style: italic">You</td>
 	  <td id="userWins">0</td>
 	  <td id="userLosses">0</td>
 	 </tr>
@@ -177,7 +162,7 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	</div>
 	<!--Dice Images START--> 
 	<div id="dice">
-	<p id="message"><!--This tag will be used for displaying messages to the user as the game goes on--></p>
+	<div id="message"><!--This tag will be used for displaying messages to the user as the game goes on--></div>
 	<img id="firstDie"   src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-side-1-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
      <img id="secondDie" src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-side-2-128.png" alt="[One of your five Dice" title="One of your five Dice"/>
      <img id="thirdDie"  src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
@@ -221,6 +206,12 @@ Finsih Date: 10/??/2017 - Beta 1.1
 	</div>
 	<!--Rules Window END-->
 </p>
+<address>
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+	<img id="CCimage" alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br/>
+	<i id="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+	</i>
+</address>
 <script>//All JavaScript Code
 {//Rolling the dice cups & Displaying the dice the user has rolled
  function rollCup(){//rolling the users hand, or 'cup'
@@ -438,37 +429,48 @@ Finsih Date: 10/??/2017 - Beta 1.1
   	npc3Amount=0, npc3Value=0;
   	npc4Amount=0, npc4Value=0;
   	npc5Amount=0, npc5Value=0;
-  	document.getElementById(id="message").innerHTML="Here is your cup of Dice";
+  	document.getElementById(id="message").innerHTML="Here is your cup of Dice<br/>";
   	
   	document.getElementById("rollButton").disabled=false;
   	document.getElementById("bidButton").disabled=true;
   	document.getElementById("liarButton").disabled=true;
   	document.getElementById("nextRoundButton").disabled=true;
+  	document.getElementById("bidAgain").disabled=true;
   }
    //Enabling/disabling buttons based on what stage of the game they're in
-   function phase1(){
-  	document.getElementById(id="message").innerHTML="You have rolled. . .";
-  	
-   	document.getElementById("rollButton").disabled=true;
-   	document.getElementById("bidButton").disabled=false;
-   	document.getElementById("liarButton").disabled=true;
-   	document.getElementById("nextRoundButton").disabled=true;
+   function phase1(){//After the player has rolled the dice cups
+		document.getElementById(id="message").innerHTML="You have rolled. . .<br/>";
+		
+		document.getElementById("rollButton").disabled=true;
+		document.getElementById("bidButton").disabled=false;
+		document.getElementById("liarButton").disabled=true;
+		document.getElementById("nextRoundButton").disabled=true;
+		document.getElementById("bidAgain").disabled=true;
    }
-    function phase2(){
+    function phase2(){//After the player has placed a bid
     	document.getElementById("rollButton").disabled=true;
-  	document.getElementById("bidButton").disabled=false;
+		document.getElementById("bidButton").disabled=true;
     	document.getElementById("liarButton").disabled=false;
     	document.getElementById("nextRoundButton").disabled=true;
+		document.getElementById("bidAgain").disabled=false;
     }
-     function phase3(){
-	document.getElementById("rollButton").disabled=true;
-	document.getElementById("bidButton").disabled=true;
-	document.getElementById("liarButton").disabled=true;
-	document.getElementById("nextRoundButton").disabled=false;
-}
+     function phase3(){//After someone has been called a liar
+		document.getElementById("rollButton").disabled=true;
+		document.getElementById("bidButton").disabled=true;
+		document.getElementById("liarButton").disabled=true;
+		document.getElementById("nextRoundButton").disabled=false;
+		document.getElementById("bidAgain").disabled=true;
+	}
+	function phase4(){//After the player has chosen to bid again
+		document.getElementById("rollButton").disabled=true;
+		document.getElementById("bidButton").disabled=false;
+		document.getElementById("liarButton").disabled=true;
+		document.getElementById("nextRoundButton").disabled=true;
+		document.getElementById("bidAgain").disabled=true;
+	}
 }
 
-{//Script for Bidding Functions
+{//Script for Bidding Functions - NPC & Player
  function userBid(){//Bid script for the Player	
  	userBidAmount=document.getElementById("dieAmount").selectedIndex+1;
  	userBidValue=((document.bid.dieValue.selectedIndex)+1);
@@ -498,6 +500,22 @@ Finsih Date: 10/??/2017 - Beta 1.1
  		X--;
  	}
  }
+  function bidCeiling(){
+  //setting the ceiling for dieAmount bids
+ 	var bidAmountMenu=(document.bid.dieAmount);
+ 	var Y=(npc5Amount+1);
+ 	while ((Y<=29)&&(Y>=0)){
+ 		document.getElementById("dieAmount").options[Y].disabled=true;
+ 		Y++;
+ 	}  
+  //setting the ceiling for dieValue bids
+ 	var bidValueMenu=document.bid.dieValue;
+ 	var X=(npc5Value+1);
+ 	while ((X<=5)&&(X>=0)){
+ 		document.getElementById("dieValue").options[X].disabled=true;
+ 		X++; 	
+ }
+}
    function findTotals(){//Finding the total amount of each die value in the game
     	//tallying up the user's dice
     	tallyUp(die1);
@@ -579,12 +597,24 @@ Finsih Date: 10/??/2017 - Beta 1.1
 		npc1Amount=userBidAmount;
 		npc1Value=npcBidValue(dieValueStart);
 	}
-	if (npc1Value>5||npc5Value>5){
+	if (npc1Value>5||userBidValue>=5){
 		npc1Amount=userBidAmount+1;
 		npc1Value=6;
 	}
 	if (npc1Amount>30){
 		npc1Amount=30;
+	}
+	
+	if (userBidAmount!=1){
+		rng1=(Math.floor(Math.random()*4)+1);
+		if ((rng1<=3)&&(npc1Value<6)){
+			npc1Amount=npcBidAmount(userBidAmount);
+			npc1Value=userBidValue;
+		}
+		if ((rng1==4)&&(npc1Value<6)){
+			npc1Amount=userBidAmount;
+			npc1Value=npcBidValue(userBidValue);
+		}		
 	}
 }
 //NPC2 Bidding
@@ -671,6 +701,7 @@ Finsih Date: 10/??/2017 - Beta 1.1
 		document.getElementById("npc5Bid").innerHTML=(npc5Amount+ " - "+ npc5Value+ "'s");
 		
 		bidFloor();
+		bidCeiling();
 	}
 }
 }
@@ -723,7 +754,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
   
 	if(value==1){//Testing the total amount of 1's and updating the Score Chart
 		if (amount<=total1){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total1+" 1's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total1+" - 1's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -748,7 +779,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total1+" 1's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total1+" - 1's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -776,7 +807,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 	if(value==2){//Testing the total amount of 2's and updating the Score Chart
 		if (amount<=total2){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total2+" 2's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total2+" - 2's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -801,7 +832,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total2+" 2's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total2+" - 2's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -829,7 +860,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 	if(value==3){//Testing the total amount of 3's and updating the Score Chart
 		if (amount<=total3){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total3+" 3's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total3+" - 3's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -854,7 +885,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total3+" 3's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total3+" - 3's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -882,7 +913,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 	if(value==4){//Testing the total amount of 4's and updating the Score Chart
 		if (amount<=total4){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total4+" 4's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total4+" - 4's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -907,7 +938,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total4+" 4's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total4+" - 4's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -935,7 +966,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 	if(value==5){//Testing the total amount of 5's and updating the Score Chart
 		if (amount<=total5){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total5+" 5's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total5+" - 5's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -960,7 +991,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total5+" 5's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total5+" - 5's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -988,7 +1019,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 	if(value==6){//Testing the total amount of 6's and updating the Score Chart
 		if (amount<=total6){//They were not bluffing, user losses
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total6+" 6's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Sadly, they were not bluffing. You have lost this round.<br/>There were a total of "+total6+" - 6's rolled this round";
 			if (name=="NPC 1"){
 				npc1Wins++;
 				document.getElementById("npc1Wins").innerHTML=(npc1Wins);
@@ -1013,7 +1044,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 			document.getElementById("userLosses").innerHTML=(userLosses);
 		}
 		else{//They were bluffing, user wins
-			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total6+" 6's rolled this round";
+			document.getElementById("message").innerHTML="You Called "+name+"'s Bluff! Good move, considering it was indeed a Bluff! You have won this round.<br/>There were a total of "+total6+" - 6's rolled this round";
 			if (name=="NPC 1"){
 				npc1Losses++;
 				document.getElementById("npc1Losses").innerHTML=(npc1Losses);
@@ -1043,24 +1074,24 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 {//Script for NPC's Calling Bluffs
 function npcCallOut(){
-var rng=(Math.floor(Math.random())*5)+1;
-if (rng==1)
-	npc1CallOut();
-if (rng==2)
-	npc2CallOut();
-if (rng==3)
-	npc3CallOut();
-if (rng==4)
-	npc4CallOut();
-if (rng==5)
-	npc5CallOut();
+	var rng=(Math.floor(Math.random())*5)+1;
+	if (rng==1)
+		npc1CallOut();
+	if (rng==2)
+		npc2CallOut();
+	if (rng==3)
+		npc3CallOut();
+	if (rng==4)
+		npc4CallOut();
+	if (rng==5)
+		npc5CallOut();
 }
 
   function lieTest2(amount, value, name1, name2){//NPC calling out another NPC or The User
   
 	if(value==1){//Testing the total amount of 1's and updating the Score Chart
 		if (amount<=total1){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total1+" 1's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total1+" - 1's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1103,13 +1134,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++; currentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total1+" 1's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total1+" - 1's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1152,7 +1183,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1161,7 +1192,7 @@ if (rng==5)
 	
 	if(value==2){//Testing the total amount of 2's and updating the Score Chart
 		if (amount<=total2){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total2+" 2's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total2+" - 2's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1204,13 +1235,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++; currrentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total2+" 2's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total2+" - 2's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1257,7 +1288,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1266,7 +1297,7 @@ if (rng==5)
 	
 	if(value==3){//Testing the total amount of 3's and updating the Score Chart
 		if (amount<=total3){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total3+" 3's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total3+" - 3's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1309,13 +1340,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++;  currentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total3+" 3's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total3+" - 3's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1362,7 +1393,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1371,7 +1402,7 @@ if (rng==5)
 	
 	if(value==4){//Testing the total amount of 4's and updating the Score Chart
 		if (amount<=total4){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total4+" 4's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total4+" - 4's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1414,13 +1445,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++;  currentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total4+" 4's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total4+" - 4's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1467,7 +1498,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1476,7 +1507,7 @@ if (rng==5)
 	
 	if(value==5){//Testing the total amount of 5's and updating the Score Chart
 		if (amount<=total5){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total5+" 5's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total5+" - 5's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1519,13 +1550,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++;  currentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total5+" 5's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total5+" - 5's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1568,7 +1599,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1577,7 +1608,7 @@ if (rng==5)
 	
 	if(value==6){//Testing the total amount of 6's and updating the Score Chart
 		if (amount<=total6){//They were not bluffing, the caller Losses
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total6+" 6's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Sadly, they were not bluffing. "+name1+" has lost this round.<br/>There were a total of "+total6+" - 6's rolled this round";
 			//tallying up the losing scores
 			if (name1=="NPC 1"){
 				npc1Losses++;
@@ -1620,13 +1651,13 @@ if (rng==5)
 				npc5Wins++;
 				document.getElementById("npc5Wins").innerHTML=(npc5Wins);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userWins++;  currentWinStreak++;
 				document.getElementById("userWins").innerHTML=(userWins);
 			}
 		}
 		else{//They were bluffing, the caller wins
-			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total6+" 6's rolled this round";
+			document.getElementById("message").innerHTML=name1+" Called the Bluff of "+name2+"! Good move, considering it was indeed a Bluff! "+name1+" has won this round.<br/>There were a total of "+total6+" - 6's rolled this round";
 			//tallying up the winning scores
 			if (name1=="NPC 1"){
 				npc1Wins++;
@@ -1669,7 +1700,7 @@ if (rng==5)
 				npc5Losses++;
 				document.getElementById("npc5Losses").innerHTML=(npc5Losses);
 			}
-			if (name2=="You"){
+			if (name2=="the Player (You)"){
 				userLosses++; currentWinStreak=0;
 				document.getElementById("userLosses").innerHTML=(userLosses);
 			}
@@ -1680,10 +1711,10 @@ if (rng==5)
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
 		var name1="NPC 1";
-		if (rng>=75){
+		if (rng>=40){
 		var rng2=(Math.floor(Math.random()*5)+1);
 			if (rng2==1){//calling out the user
-				name2="You";
+				name2="the Player (You)";
 				lieTest2(userBidAmount, userBidValue, name1, name2);
 			}
 			if (rng2==2){//calling out NPC 2
@@ -1708,94 +1739,109 @@ if (rng==5)
 	function npc2CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
-		if (rng>=75){
+		if (rng>=40){
 			
 		}
 	}
 	function npc3CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
-		if (rng>=75){
+		if (rng>=40){
 			
 		}
 	}
 	function npc4CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
-		if (rng>=75){
+		if (rng>=40){
 			
 		}
 	}
 	function npc5CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
-		if (rng>=75){
+		if (rng>=40){
 			
 		}
 	}
 }
 
-{//Changing the button colors
+{//Changing the button availabilities
  document.getElementById("html").addEventListener("click", changeColour);
  function changeColour(){
  //roll button
  	if (document.getElementById("rollButton").disabled==true){
- 		document.getElementById("rollButton").style.background="orangered";
- 		document.getElementById("rollButton").style.borderColor="orangered";
  		document.getElementById("rollButton").style.borderStyle="inset";
  		document.getElementById("rollButton").style.opacity=0.5;
+ 		document.getElementById("rollButton").style.cursor="not-allowed";
  	}
  	else{
- 		document.getElementById("rollButton").style.background="seagreen";
- 		document.getElementById("rollButton").style.borderColor="seagreen";
  		document.getElementById("rollButton").style.borderStyle="outset";
  		document.getElementById("rollButton").style.opacity=1.0;
+ 		document.getElementById("rollButton").style.cursor="pointer";
  	}
  //bid button
  	if (document.getElementById("bidButton").disabled==true){
- 		document.getElementById("bidButton").style.background="orangered";
- 		document.getElementById("bidButton").style.borderColor="orangered";
  		document.getElementById("bidButton").style.borderStyle="inset";
  		document.getElementById("bidButton").style.opacity=0.5;
+ 		document.getElementById("bidButton").style.cursor="not-allowed";
  	}
  	else{
- 		document.getElementById("bidButton").style.background="seagreen";
- 		document.getElementById("bidButton").style.borderColor="seagreen";
  		document.getElementById("bidButton").style.borderStyle="outset";
  		document.getElementById("bidButton").style.opacity=1.0;
+ 		document.getElementById("bidButton").style.cursor="pointer";
  	}
  //liar button
  	if (document.getElementById("liarButton").disabled==true){
- 		document.getElementById("liarButton").style.background="orangered";
- 		document.getElementById("liarButton").style.borderColor="orangered";
  		document.getElementById("liarButton").style.borderStyle="inset";
  		document.getElementById("liarButton").style.opacity=0.5;
+ 		document.getElementById("liarButton").style.cursor="not-allowed";
  	}
  	else{
- 		document.getElementById("liarButton").style.background="orange";
- 		document.getElementById("liarButton").style.borderColor="orange";
  		document.getElementById("liarButton").style.borderStyle="outset";
  		document.getElementById("liarButton").style.opacity=1.0;
+ 		document.getElementById("liarButton").style.cursor="pointer";
  	}
  //next round button
  	if (document.getElementById("nextRoundButton").disabled==true){
- 		document.getElementById("nextRoundButton").style.background="orangered";
- 		document.getElementById("nextRoundButton").style.borderColor="orangered";
  		document.getElementById("nextRoundButton").style.borderStyle="inset";
  		document.getElementById("nextRoundButton").style.opacity=0.5;
+ 		document.getElementById("nextRoundButton").style.cursor="not-allowed";
  	}
  	else{
- 		document.getElementById("nextRoundButton").style.background="seagreen";
- 		document.getElementById("nextRoundButton").style.borderColor="seagreen";
  		document.getElementById("nextRoundButton").style.borderStyle="outset";
  		document.getElementById("nextRoundButton").style.opacity=1.0;
+ 		document.getElementById("nextRoundButton").style.cursor="pointer";
  	}
- }
+ //Bid Again button
+ 	if (document.getElementById("bidAgain").disabled==true){
+ 		document.getElementById("bidAgain").style.borderStyle="inset";
+ 		document.getElementById("bidAgain").style.opacity=0.5;
+ 		document.getElementById("bidAgain").style.cursor="not-allowed";
+ 	}
+ 	else{
+ 		document.getElementById("bidAgain").style.borderStyle="outset";
+ 		document.getElementById("bidAgain").style.opacity=1.0;
+ 		document.getElementById("bidAgain").style.cursor="pointer";
+	}
+  }
 }
 
 {//Starting a New Game (essentially resetting all variables)
  function newGame(){
 	preset();
+	document.getElementById("userWins").innerHTML=0;
+	document.getElementById("npc1Wins").innerHTML=0;
+	document.getElementById("npc2Wins").innerHTML=0;
+	document.getElementById("npc3Wins").innerHTML=0;
+	document.getElementById("npc4Wins").innerHTML=0;
+	document.getElementById("npc5Wins").innerHTML=0;
+	document.getElementById("userLosses").innerHTML=0;
+	document.getElementById("npc1Losses").innerHTML=0;
+	document.getElementById("npc2Losses").innerHTML=0;
+	document.getElementById("npc3Losses").innerHTML=0;
+	document.getElementById("npc4Losses").innerHTML=0;
+	document.getElementById("npc5Losses").innerHTML=0;
 	currentWinStreak=0;
 	updateWinStreak();
 	document.getElementById("liarBox").selectedIndex=0;
@@ -1823,6 +1869,12 @@ if (rng==5)
 			
 		document.getElementById("currentWinStreak").innerHTML=("Current Win Streak: "+ currentWinStreak);
 		document.getElementById("bestWinStreak").innerHTML=("Best Win Streak: "+ bestWinStreak);
+	}
+}
+
+{//Increasing the Bids
+	function increaseBids(){
+		document.getElementById("userBid").innerHTML="? - ?'s";
 	}
 }
 </script>
