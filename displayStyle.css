@@ -127,9 +127,3 @@ a:hover, select:hover{
 	margin-right:-6px;
 	margin-top:-6px;
 }
-#changeLog{
-	font-size: 10pt;
-	font-style: italic;
-	border-radius: 6px;
-	cursor: help;
-}
