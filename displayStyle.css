@@ -1,8 +1,8 @@
 /*
 Brendon Busic
 Personal Project - Liar's Dice (CSS Styling Code)
-Start Date: 10/15/2017
-Finsih Date: 10/18/2017 - Beta 1.3
+Start Date: 10/18/2017
+Finsih Date: 10/24/2017 - Beta 1.3
 */
 html{
 	background-color: darkslategrey;
@@ -85,7 +85,7 @@ option{
 	text-shadow:0px 0px 5px tan;
 	font-weight: bold;
 }
-#gameVer, address, a{
+#gameVer, #CC, a{
 	color:white;
 	font-style:italic;
 	text-shadow: 0px 0px 4px black;
@@ -126,4 +126,20 @@ a:hover, select:hover{
 	margin-left:-6px;
 	margin-right:-6px;
 	margin-top:-6px;
+}
+#changeLog{
+	font-size: 10pt;
+	font-style: none;
+	border-radius: 6px;
+	cursor: help;
+}
+#versionWindow-content{	
+	font-style: italic;
+}	
+#versionHistory{
+	font-style:italic;
+	font-size: 10pt;
+}
+.versionWindow-content{
+	font-style:normal;
 }
