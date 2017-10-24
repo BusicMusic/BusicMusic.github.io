@@ -1,21 +1,21 @@
 <!--
 Personal Project - Liar's Dice (HTML Code)
 Start Date: 10/15/2017
-Finsih Date: 10/18/2017 - Beta 1.2.5
+Finsih Date: 10/??/2017 - Beta 1.3
 -->
 <!DOCTYPE html>
  <html id="html">
   <head>
    <link href="Liar'sDiceStyle.css" rel="stylesheet" type="text/css">
    <link href="displayStyle.css" rel="stylesheet" type="text/css">
-   <title>Liar's Dice - Beta 1.2.5</title>
+   <title>Liar's Dice - Beta 1.3</title>
    <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" type="image" sizes="16x16">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="author" content="Brendon Busic">
    <meta name="description" content="A Dice Game commonly reffered to 'Liar's Dice'. Easy to learn, free to play. ">
    <meta name="keywords" content="Dice, Gamble, Free, Dice Game, Liar's Dice">
    
-	<br/><div id="gameVer">Game Version - Beta 1.2.5<br/>We skipped 1.1! Right down to business!</div><br/>
+	<br/><div id="gameVer">Game Version - Beta 1.3</div><br/>
   </head>
 
   <body onload="preset(), changeColour()">
@@ -70,7 +70,7 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
 	   </br>
 	   
 <!--Liar Button--><input id="liarButton" type="button" value="Liar!" onclick="callOut(), phase3(), updateWinStreak()" title="Accuse someone of being a Liar and end the round"/><br/>
-	  <select id="liarBox" title="Who are you accusing?">
+<!--drop down menu for liar options--><select id="liarBox" title="Who are you accusing?">
 	   <option>NPC 1</option>
 	   <option>NPC 2</option>
 	   <option>NPC 3</option>
@@ -170,11 +170,10 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
      <img id="fifthDie"  src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-5-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
 	</div>
 	<!--Dice Images END--> 
-	
-	<!--Rules Window START-->
-	<div id="myModal" class="ruleWindow">
+</p>	
+<!--Rules Window--><div id="myModal" class="ruleWindow">
 	 <div class="ruleWindow-content">
-	  <span class="close">&#10007;</span>
+	  <span class="closeRules">&#10007;</span>
 	  <p><!--Rules-->
 	   <i>Instructions on How to Play 'Liar's Dice'</i>
 	   <ol>
@@ -204,13 +203,31 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
 	  </p>
 	 </div>
 	</div>
-	<!--Rules Window END-->
-</p>
 <address>
+	<input id="versionHistory" type="button" value="Version History & Updates" onclick="showChangeLog" title="Shows the game versions and what each update changed"/>
+<!--Version History & Updates Window--><div id="myModal2" class="versionWindow">
+	<div class="versionWindow-content">
+	 <span class="closeVersion">&#10007;</span>
+	  <p id="versionWindow-content"><!--Version History-->
+	  <i>*The most recent version is at the bottom of the list</i>
+	   <ul>
+	    <li><b>Beta 1.0 - [10/12/2017]</b><br/>-Initial Release</li>
+		<li><b>Beta 1.1 - [NOT RELEASED]</b><br/>-Very minor tweaks and additions. Decided to release with next version</li>
+		<li><b>Beta 1.2 - [10/14/2017]</b><br/>-Updated Interface by adding images, additional styling, fonts, color schemes, etc.</li>
+		<li><b>Beta 1.2.5 - [10/15/2017]</b><br/>-Fixed an issue that was causing images on the page to load incorrectly or not load at all</li>
+		<li><b>Beta 1.3 - [10/24/2017]</b><br/>-Found and fixed a bug that prevented NPC 2-5 from calling out other players<br/>-Added the Version History button</li>
+	   </ul>
+	  </p>
+	</div>
+</div>
+	
+	<br/><br/>
+	<div id="CC">
 	<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
 	<img id="CCimage" alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br/>
 	<i id="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
 	</i>
+	</div>
 </address>
 <script>//All JavaScript Code
 {//Rolling the dice cups & Displaying the dice the user has rolled
@@ -486,7 +503,9 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
   //setting the floor for dieAmount bids
  	var bidAmountMenu=(document.bid.dieAmount);
  	bidAmountMenu.selectedIndex=(npc5Amount-1);
- 	var Y=(npc5Amount-2);
+ 	var Y=(npc5Amount-1);
+	document.getElementById("dieAmount").options[Y].disabled=false;
+	Y--;
  	while ((Y>=0)&&(Y<=29)){
  		document.getElementById("dieAmount").options[Y].disabled=true;
  		Y--;
@@ -494,7 +513,9 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
  //setting the floor for dieValue bids
  	var bidValueMenu=document.bid.dieValue;
  	bidValueMenu.selectedIndex=(npc5Value-1);
- 	var X=(npc5Value-2);
+ 	var X=(npc5Value-1);
+	document.getElementById("dieValue").options[X].disabled=false;
+	X--;
  	while ((X>=0)&&(X<=5)){
  		document.getElementById("dieValue").options[X].disabled=true;
  		X--;
@@ -503,14 +524,22 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
   function bidCeiling(){
   //setting the ceiling for dieAmount bids
  	var bidAmountMenu=(document.bid.dieAmount);
- 	var Y=(npc5Amount+1);
+ 	var Y=(npc5Amount);	
+	if (npc5Amount<30){
+		document.getElementById("dieAmount").options[Y].disabled=false;
+		Y++;
+	}
  	while ((Y<=29)&&(Y>=0)){
  		document.getElementById("dieAmount").options[Y].disabled=true;
  		Y++;
  	}  
   //setting the ceiling for dieValue bids
  	var bidValueMenu=document.bid.dieValue;
- 	var X=(npc5Value+1);
+ 	var X=(npc5Value);
+	if (npc5Value<6){
+		document.getElementById("dieValue").options[X].disabled=false;
+		X++;
+	}
  	while ((X<=5)&&(X>=0)){
  		document.getElementById("dieValue").options[X].disabled=true;
  		X++; 	
@@ -706,10 +735,10 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
 }
 }
 
-{//How to Play pop-up script
+{//Rules pop-up script
  var rules=document.getElementById("myModal");
  var button=document.getElementById("rules");
- var span=document.getElementsByClassName("close")[0];
+ var span=document.getElementsByClassName("closeRules")[0];
 
  button.onclick=function(){
  	rules.style.display="block";
@@ -721,6 +750,24 @@ Finsih Date: 10/18/2017 - Beta 1.2.5
  window.onclick=function(event){
  	if (event.target==rules){
  		rules.style.display="none";
+ 	}
+ }	
+}
+{//Version pop-up script
+ var versionHistory=document.getElementById("myModal2");
+ var button=document.getElementById("versionHistory");
+ var span=document.getElementsByClassName("closeVersion")[0];
+
+ button.onclick=function(){
+ 	versionHistory.style.display="block";
+ 	console.log("test");
+ }
+ span.onclick=function(){
+ 	versionHistory.style.display="none";
+ }
+ window.onclick=function(event){
+ 	if (event.target==versionHistory){
+ 		versionHistory.style.display="none";
  	}
  }	
 }
@@ -1074,17 +1121,23 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
 
 {//Script for NPC's Calling Bluffs
 function npcCallOut(){
-	var rng=(Math.floor(Math.random())*5)+1;
-	if (rng==1)
-		npc1CallOut();
-	if (rng==2)
-		npc2CallOut();
-	if (rng==3)
-		npc3CallOut();
-	if (rng==4)
-		npc4CallOut();
-	if (rng==5)
-		npc5CallOut();
+	var rng=(Math.floor(Math.random()*5)+1);
+	console.log("Callout rng="+rng);
+	if (rng==1){
+		console.log("npc1 callout");
+		npc1CallOut();}
+	if (rng==2){
+		console.log("npc2 callout");
+		npc2CallOut();}
+	if (rng==3){
+		console.log("npc3 callout");
+		npc3CallOut();}
+	if (rng==4){
+		console.log("npc4 callout");
+		npc4CallOut();}
+	if (rng==5){
+		console.log("npc5 callout");
+		npc5CallOut();}
 }
 
   function lieTest2(amount, value, name1, name2){//NPC calling out another NPC or The User
@@ -1739,28 +1792,120 @@ function npcCallOut(){
 	function npc2CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
+		var name1="NPC 2";
 		if (rng>=40){
+		var rng2=(Math.floor(Math.random()*5)+1);
+			if (rng2==1){//calling out the user
+				name2="the Player (You)";
+				lieTest2(userBidAmount, userBidValue, name1, name2);
+			}
+			if (rng2==2){//calling out NPC 1
+				name2="NPC 1";
+				lieTest2(npc1Amount, npc1Value, name1, name2);
+			}
+			if (rng2==3){//calling out NPC 3
+				name2="NPC 3";
+				lieTest2(npc3Amount, npc3Value, name1, name2);
+			}
+			if (rng2==4){//calling out NPC 4
+				name2="NPC 4";
+				lieTest2(npc4Amount, npc4Value, name1, name2);
+			}
+			if (rng2==5){//calling out NPC 5
+				name2="NPC 5";
+				lieTest2(npc5Amount, npc5Value, name1, name2);
+			}
+			phase3();
 			
 		}
 	}
 	function npc3CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
+		var name1="NPC 3";
 		if (rng>=40){
+		var rng2=(Math.floor(Math.random()*5)+1);
+			if (rng2==1){//calling out the user
+				name2="the Player (You)";
+				lieTest2(userBidAmount, userBidValue, name1, name2);
+			}
+			if (rng2==2){//calling out NPC 2
+				name2="NPC 2";
+				lieTest2(npc2Amount, npc2Value, name1, name2);
+			}
+			if (rng2==3){//calling out NPC 1
+				name2="NPC 1";
+				lieTest2(npc1Amount, npc1Value, name1, name2);
+			}
+			if (rng2==4){//calling out NPC 4
+				name2="NPC 4";
+				lieTest2(npc4Amount, npc4Value, name1, name2);
+			}
+			if (rng2==5){//calling out NPC 5
+				name2="NPC 5";
+				lieTest2(npc5Amount, npc5Value, name1, name2);
+			}
+			phase3();
 			
 		}
 	}
 	function npc4CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
+		var name1="NPC 4";
 		if (rng>=40){
+		var rng2=(Math.floor(Math.random()*5)+1);
+			if (rng2==1){//calling out the user
+				name2="the Player (You)";
+				lieTest2(userBidAmount, userBidValue, name1, name2);
+			}
+			if (rng2==2){//calling out NPC 2
+				name2="NPC 2";
+				lieTest2(npc2Amount, npc2Value, name1, name2);
+			}
+			if (rng2==3){//calling out NPC 3
+				name2="NPC 3";
+				lieTest2(npc3Amount, npc3Value, name1, name2);
+			}
+			if (rng2==4){//calling out NPC 1
+				name2="NPC 1";
+				lieTest2(npc1Amount, npc1Value, name1, name2);
+			}
+			if (rng2==5){//calling out NPC 5
+				name2="NPC 5";
+				lieTest2(npc5Amount, npc5Value, name1, name2);
+			}
+			phase3();
 			
 		}
 	}
 	function npc5CallOut(){
 		var X=(npc1Amount+npc2Amount+npc3Amount+npc4Amount+npc5Amount+userBidAmount);
 		var rng=(Math.floor(Math.random())*100)+X;
+		var name1="NPC 5";
 		if (rng>=40){
+		var rng2=(Math.floor(Math.random()*5)+1);
+			if (rng2==1){//calling out the user
+				name2="the Player (You)";
+				lieTest2(userBidAmount, userBidValue, name1, name2);
+			}
+			if (rng2==2){//calling out NPC 2
+				name2="NPC 2";
+				lieTest2(npc2Amount, npc2Value, name1, name2);
+			}
+			if (rng2==3){//calling out NPC 3
+				name2="NPC 3";
+				lieTest2(npc3Amount, npc3Value, name1, name2);
+			}
+			if (rng2==4){//calling out NPC 4
+				name2="NPC 4";
+				lieTest2(npc4Amount, npc4Value, name1, name2);
+			}
+			if (rng2==5){//calling out NPC 1
+				name2="NPC 1";
+				lieTest2(npc1Amount, npc1Value, name1, name2);
+			}
+			phase3();
 			
 		}
 	}
