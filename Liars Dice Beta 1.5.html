@@ -1,0 +1,248 @@
+<!--
+Personal Project - Liar's Dice (HTML Code)
+Start Date: 12/10/2017
+Finsih Date: ??/??/201? - Version 1.5
+-->
+<!DOCTYPE html>
+ <html id="html">
+  <head>
+   <link href="Liar'sDiceStyle.css" rel="stylesheet" type="text/css">
+   <link href="displayStyle.css" rel="stylesheet" type="text/css">
+   
+   <title>Liar's Dice</title>
+   <link rel="icon" href="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" type="image" sizes="16x16">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="author" content="Brendon Busic">
+   <meta name="description" content="A Dice Game commonly reffered to 'Liar's Dice'. Easy to learn, free to play.">
+   <meta name="keywords" content="Dice, Gamble, Free, Dice Game, Liar's Dice">
+   
+	<br/><div id="gameVer">Game Version - Beta 1.5</div><br/>
+  </head>
+
+  <body onload="preset(), changeColour()">
+<p id="mainContent">
+  <div id="topPort">
+    <!--Button Code START-->
+<!--Left Button Menue--><fieldset id="buttonMenu1">
+<!--Roll Button--><br/><input id="rollButton" type="button" value="Roll Dice" onclick="rollCup(), npcRoll(), phase1(), findTotals(), npcBidding()" title="Roll the dice, and start the game"/><br/><br/>
+<!--Bid Button--><input id="bidButton" type="button" value="Bid" onclick="userBid(), npcCallOut(), updateWinStreak()" title="Click here to place your Bid"/>
+<!--drop down menu for bid numbers--><form action="" name="bid">
+	    <select id="dieAmount" title="How many dice or you betting on?"><!--Choosing the amount of dice-->
+	     <option value="1">One</option>
+	     <option value="2">Two</option>
+	     <option value="3">Three</option>
+	     <option value="4">Four</option>
+	     <option value="5">Five</option>
+	     <option value="6">Six</option>
+	     <option value="7">Seven</option>
+	     <option value="8">Eight</option>
+	     <option value="9">Nine</option>
+	     <option value="10">Ten</option>
+	     <option value="11">Eleven</option>
+	     <option value="12">Twelve</option>
+	     <option value="13">Thirteen</option>
+	     <option value="14">Fourteen</option>
+	     <option value="15">Fifteen</option>
+		 <option value="16">Sixteen</option>
+	     <option value="17">Seventeen</option>
+	     <option value="18">Eightteen</option>
+	     <option value="19">Nineteen</option>
+	     <option value="20">Twenty</option>
+	     <option value="21">Twenty One</option>
+	     <option value="22">Twenty Two</option>
+	     <option value="23">Twenty Three</option>
+	     <option value="24">Twenty Four</option>
+	     <option value="25">Twenty Five</option>
+	     <option value="26">Twenty Six</option>
+	     <option value="27">Twenty Seven</option>
+	     <option value="28">Twenty Eight</option>
+	     <option value="29">Twenty Nine</option>
+	     <option value="30">Thirty</option>
+	    </select>
+	    <select id="dieValue" title="What value of the dice are you betting on?"><!--Choosing the value of the dice-->
+	     <option value=1>1's</option>
+	     <option value=2>2's</option>
+	     <option value=3>3's</option>
+	     <option value=4>4's</option>
+	     <option value=5>5's</option>
+	     <option value=6>6's</option>
+	    </select>
+	   </form>
+	   </br>
+	   
+<!--Liar Button--><input id="liarButton" type="button" value="Liar!" onclick="callOut(), phase3(), updateWinStreak()" title="Accuse someone of being a Liar and end the round"/><br/>
+<!--drop down menu for liar options--><select id="liarBox" title="Who are you accusing?">
+	   <option>NPC 1</option>
+	   <option>NPC 2</option>
+	   <option>NPC 3</option>
+	   <option>NPC 4</option>
+	   <option>NPC 5</option>
+	  </select><br/><br/>
+<!--Bid Again Button--><input id="bidAgain" type="button" value="Bid Again" onclick="npcBidding(), increaseBids(), phase4()" title="All Players make another bid and the round continues"/>
+	 <!--Bid Table Code START--><br/><table id="bidTable" border title="A table displaying the current bids of each player">
+	 <tr id="tableHead"><td colspan="2">Current Bids</td></tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 1</td>
+	  <td id="npc1Bid">? - ?'s</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1">NPC 2</td>
+	  <td id="npc2Bid">? - ?'s</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 3</td>
+	  <td id="npc3Bid">? - ?'s</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1">NPC 4</td>
+	  <td id="npc4Bid">? - ?'s</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 5</td>
+	  <td id="npc5Bid">? - ?'s</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1" style="font-style: italic">You</td>
+	  <td id="userBid">? - ?'s</td>
+	 </tr>
+	</table>	
+	<!--Bid Table Code END-->
+	<i id="note" style="text-align:center; font-size:10pt;">*Ten 4's will show up as 10 - 4's</i>
+	</fieldset>
+<!--Right Button Menue--><fieldset id="buttonMenu2">
+<!--Win Streak Menu--><fieldset id="score" title="A table displaying your current win streak and your best win streak for this session">
+	   <div id="currentWinStreak">Current Win Streak: 0</div><br/>
+	   <div id="bestWinStreak">Best Win Streak: 0</div>
+	  </fieldset><br/>
+<!--New Game Button--><input id="newGame" type="button" value="Start a New Game" onclick="newGame()" title="Start a New Game"/>
+<!--Next Round Button--><br/><br/><input id="nextRoundButton" type="button" value="Next Round" onclick="nextRound(), updateWinStreak()" title="Continue to the Next Round"/><br/><br/>
+<!--How to Play Button--><input type="button" value="How to Play" id="rules" title="Click here for a pop-up of Rules and Instructions"/><br/>
+<!--Score Table Code START--><table id="scoreTable" border title="A table displaying the total Wins and Losses for each player this session">
+	 <tr id="tableHead">
+	  <td colspan="3";>Score Chart</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">Player</td>
+	  <td>Wins</td>
+	  <td>Losses</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1" style="font-style: italic">You</td>
+	  <td id="userWins">0</td>
+	  <td id="userLosses">0</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 1</td>
+	  <td id="npc1Wins">0</td>
+	  <td id="npc1Losses">0</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1">NPC 2</td>
+	  <td id="npc2Wins">0</td>
+	  <td id="npc2Losses">0</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 3</td>
+	  <td id="npc3Wins">0</td>
+	  <td id="npc3Losses">0</td>
+	 </tr>
+	 <tr id="rowB">
+	  <td id="col1">NPC 4</td>
+	  <td id="npc4Wins">0</td>
+	  <td id="npc4Losses">0</td>
+	 </tr>
+	 <tr id="rowA">
+	  <td id="col1">NPC 5</td>
+	  <td id="npc5Wins">0</td>
+	  <td id="npc5Losses">0</td>
+	 </tr>
+	</table>
+<!--Score Table Code END-->
+</fieldset>
+	<!--Button Code END-->
+	</div>
+	<!--Dice Images START--> 
+	<div id="dice">
+	<div id="message"><!--This tag will be used for displaying messages to the user as the game goes on--></div>
+	<img id="firstDie"   src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-side-1-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
+    <img id="secondDie" src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-side-2-128.png" alt="[One of your five Dice" title="One of your five Dice"/>
+    <img id="thirdDie"  src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-3-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
+    <img id="fourthDie" src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-side-4-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
+    <img id="fifthDie"  src="https://cdn1.iconfinder.com/data/icons/slimicons-gambling/24/gambling_dice-5-128.png" alt="[One of your five Dice]" title="One of your five Dice"/>
+	</div>
+	<!--Dice Images END--> 
+</p>
+<!--Rules Window--><div id="myModal" class="ruleWindow">
+	 <div class="ruleWindow-content">
+	  <span class="closeRules" title="Close Window">&#10007;</span>
+	  <p><!--Rules-->
+	   <i>Instructions on How to Play 'Liar's Dice'</i>
+	   <ol>
+	   <li>The Basics
+	    <ul>
+		 <li> Each Player has a total of five dice. If there are two players, the total amount of dice in play is 10. If there are three players, the total amount of dice in play is 15, and so on.
+		 </li>
+		 <li>You can only roll your dice cup (or hand) once per round.
+		</li>
+		<li>Each round ends after someone calls out another player as a 'Liar'(see Bidding & Liars).
+		</li>
+		<li>Each player <b>must</b> make a bet.
+		</li>
+		 </ul>
+		</li>
+		<li>Bidding & Liars
+		 <ul>
+		  <li>When Bidding, you say two numbers. The First number is how many dice you are claiming there are, and the Second number is the value of those dice. For example: 4, 5 (or four 5's) means you are betting that out of ALL of the dice in play, four of them are 5's.
+		  </li>
+		  <li>Each players bid MUST be at least one number greater than the previous players' bid in one of the categories. For example: If the previous bid is Four 5's, you MUST bid Five 5's OR Four 6's.
+		  </li>
+		  <li>If you think someone has bid something that is not possible you may call them out (or call them a 'Liar'). You then look at all the dice in play. If they're bid is incorrect, they lose. If they're bid is correct, you lose. The round is then concluded and each player rolls their dice again to start a new round.
+		  </li>
+		 </ul>
+		</li>
+	   </ol>
+	  </p>
+	 </div>
+	</div>
+<!--Version History HTML--><address>
+<!--Version Histroy & Updates Button--><input id="versionHistory" type="button" value="Version History & Updates" onclick="showChangeLog" title="Shows the game versions and what each update changed"/>
+<!--Version History & Updates Window--><div id="myModal2" class="versionWindow">
+	<div class="versionWindow-content">
+	 <span class="closeVersion" title="Close Window">&#10007;</span>
+	  <p id="versionWindow-content">
+<!--Version History-->
+<span id="contactInformation">	  
+  <!--Email Logo Button--><img id="Email" src="https://lh3.googleusercontent.com/-A1K776er5Pg/Wi63drl0y9I/AAAAAAAAMl8/o94druC0114RHRhbLho7t46HpWm_f_uwACL0BGAs/w530-d-h530-n-rw/email.png" alt="Email Me" title="Contact me about an issue or concern you have" onclick="emailMe()"/>
+  <!--Twitter Logo Button--><img id="Twitter" src="https://lh3.googleusercontent.com/-pp_bJK6d-x4/Wi63hWF7qrI/AAAAAAAAMmU/D7vPUXpB854VezyVHnPDIFggeGPzo84GwCL0BGAs/w530-d-h530-n-rw/twitter.png" alt="Follow me on Twitter" title="Follow me on Twitter for updates on this game" onclick="TwitterProfile()"/>
+  <!-- Github Logo Button--><img id="gitHub" src="https://lh3.googleusercontent.com/-SWMrACyT9hg/Wi63Z_HS5vI/AAAAAAAAMlk/RMDUvGnvBHEO62A729vFSuk4qzj61NEWACL0BGAs/w530-d-h530-n-rw/gitHub.png" alt="Check out my other programming work" title="Check out my other programming work on Github" onclick="gitHubProfile()"/>
+</span>
+    <div id="betaList">
+	  <i>*The most recent version is at the bottom of the list</i>
+	   <ul>
+	    <li><b>Beta 1.0 - [10/12/2017]</b><br/>-Initial Release</li>
+		<li><b>Beta 1.1 - [NOT RELEASED]</b><br/>-Very minor tweaks and additions. Decided to release with next version</li>
+		<li><b>Beta 1.2 - [10/14/2017]</b><br/>-Updated Interface by adding images, additional styling, fonts, color schemes, etc.</li>
+		<li><b>Beta 1.2.5 - [10/15/2017]</b><br/>-Fixed an issue that was causing images on the page to load incorrectly or not load at all</li>
+		<li><b>Beta 1.3 - [10/24/2017]</b><br/>-Found and fixed a bug that prevented NPC 2-5 from calling out other players<br/>-Added the Version History button</li>
+		<li><b>Beta 1.4 - [12/10/2017]</b><br/>-Fixed a bidding bug that allowed players to match the bid of NPC 5. Conflicting with the rules<br/>-Added Twitter & Email contact information for those who are interested<br/><i>Decided to release with 1.5 due to the gap in update history</i></li>
+		<li><b>Beta 1.5 - [??/??/???]</b><br/>-Added GitHub contact information for those who are interested<br/>-Added alternate text so you can still play the game if images don't load<br/>-Added titles to better describe the Dice images based on what you rolled</li>
+	   </ul>
+	  </div>
+	  </p>
+	</div>
+</div>
+	
+	<br/><br/>
+	<div id="CC">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+	<img id="CCimage" alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br/>
+	<i id="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+	</i>
+	</div>
+</address>
+
+   <script src="gameScript.js" type="text/javascript">
+   </script>
+   
+  </body>
+ </html>

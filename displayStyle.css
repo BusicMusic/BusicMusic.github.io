@@ -1,8 +1,8 @@
 /*
 Brendon Busic
 Personal Project - Liar's Dice (CSS Styling Code)
-Start Date: 10/18/2017
-Finsih Date: 10/24/2017 - Beta 1.3
+Start Date: 10/24/2017
+Finsih Date: 10/??/2017 - Beta 1.4
 */
 html{
 	background-color: darkslategrey;
@@ -141,5 +141,49 @@ a:hover, select:hover{
 	font-size: 10pt;
 }
 .versionWindow-content{
-	font-style:normal;
+	font-style: normal;
+	max-height: 500px;
+	overflow: auto;
+}
+
+#contactInformation{
+	margin-top: -23px;
+	overflow: none;
+	display: block;
+	text-align: right;
+	margin-right: 30px;
+}
+#Twitter{
+	background-image: none;
+	box-shadow: none;
+	width: 50px;
+	float:top;
+}
+#Twitter:hover{
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px dodgerblue;
+}
+#Email{
+	background-image: none;
+	box-shadow: none;
+	width: 45px;
+}
+#Email:hover{
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px grey;
+}
+#gitHub{
+	background-image: none;
+	box-shadow: none;
+	width: 45px;
+}
+#gitHub:hover{
+	cursor: pointer;
+	border-radius: 10;
+	box-shadow: 0px 0px 15px lime;
+}
+#betaList{
+	
 }
