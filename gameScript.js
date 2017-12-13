@@ -1862,6 +1862,7 @@ function npcCallOut(){
 {//Increasing the Bids
 	function increaseBids(){
 		document.getElementById("userBid").innerHTML="? - ?'s";
+		validBid==fasle;
 	}
 }
 
