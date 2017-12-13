@@ -238,7 +238,7 @@
  var npc4Amount=0, npc4Value=0;
  var npc5Amount=0, npc5Value=0;
  
- var validBid= False;
+ var validBid= false;
 }
 
 {//Code for Next Round, Preset, & Phases
@@ -304,7 +304,7 @@
 		document.getElementById("liarButton").disabled=false;
 		document.getElementById("nextRoundButton").disabled=true;
 		document.getElementById("bidAgain").disabled=false;
-	    validBid=False;
+	    validBid=false;
 	}
      function phase3(){//After someone has been called a liar
 		document.getElementById("rollButton").disabled=true;
@@ -1863,7 +1863,7 @@ function npcCallOut(){
 {//Increasing the Bids
 	function increaseBids(){
 		document.getElementById("userBid").innerHTML="? - ?'s";
-		validBid==fasle;
+		validBid==false;
 	}
 }
 
