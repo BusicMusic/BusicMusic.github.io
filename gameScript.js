@@ -304,6 +304,7 @@
 		document.getElementById("liarButton").disabled=false;
 		document.getElementById("nextRoundButton").disabled=true;
 		document.getElementById("bidAgain").disabled=false;
+	    validBid==false;
 	}
      function phase3(){//After someone has been called a liar
 		document.getElementById("rollButton").disabled=true;
