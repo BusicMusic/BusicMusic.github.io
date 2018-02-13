@@ -633,7 +633,7 @@ var userLosses=0, npc1Losses=0, npc2Losses=0, npc3Losses=0, npc4Losses=0, npc5Lo
  	}
  	if (document.getElementById("liarBox").selectedIndex==3){
 		name="NPC 4";
-		lieTest(npc4Amount, npc4value, name);
+		lieTest(npc4Amount, npc4Value, name);
  	}
  	if (document.getElementById("liarBox").selectedIndex==4){
 		name="NPC 5";
