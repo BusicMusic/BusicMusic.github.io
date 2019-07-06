@@ -35,7 +35,6 @@ html{
 /* Specific CSS for the Header and its contents */
 #header{
 	text-align: center;
-	/* background-image: linear-gradient(to bottom right, cyan, teal); */
 }
 #headerText{
 	font-size: 50pt;
@@ -56,7 +55,7 @@ html{
 /* Specific CSS for the Navigation Column and its contents */
 #navCol{
 	position: sticky;
-	top: 5px;
+	top: 10px;
 }
 .navcolHeader{
 	font-weight: bold;
@@ -104,4 +103,8 @@ html{
 }
 .content{
 	padding-left: 20px;
+	text-indent: 30px;
+}
+.finished{
+	text-decoration: line-through;
 }
