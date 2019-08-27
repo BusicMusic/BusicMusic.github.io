@@ -27,7 +27,7 @@ hr{
 #header{
 	margin: auto;
 	margin-bottom: 20px;
-	height: 13.5vh;
+	height: 16vh;
 }
 #navCol{
 	width: 30%;
@@ -110,12 +110,13 @@ hr{
 }
 /* Specific CSS for the body (main content) of the webpage */
 #mainContent{
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	font-size: 3vw;
 }
 .content{
-	padding-left: 20px;
-	text-indent: 30px;
+	padding-left: 3vw;
+	text-indent: 5vw;
 }
 .finished{
 	text-decoration: line-through;
