@@ -88,4 +88,16 @@ html{
 }
 .websiteBtn{
     text-align:center;
+    text-shadow:0px 0px 2px rgb(24, 175, 209);
+    border: 3px solid yellowgreen;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    background: none;
+    font-size: 12pt;
+}
+.websiteBtn:hover{
+    font-weight: bold;
+    cursor: pointer;
+    background-image: linear-gradient(to top, grey, rgba(0,0,0,0.0));
 }
