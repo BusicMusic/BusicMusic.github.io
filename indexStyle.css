@@ -1,14 +1,17 @@
 html{
+    background:
+      linear-gradient(135deg,#0000 18.75%,#2f525e 0 31.25%,#0000 0),
+      repeating-linear-gradient(45deg,#2f525e -6.25% 6.25%,#169ead 0 18.75%);
+    background-size: 175px 175px;
+
     color:white;
     text-shadow:0px 0px 2px rgb(24, 175, 209);
-    background-color:rgb(50, 173, 211);
-    background-image: url("ocean waves.jpeg");
     background-attachment: fixed;
-    background-size: 100%;
     background-position: center;
 	padding: 25px;
 	margin: auto;
     font-family: sans-serif;
+    scroll-behavior: smooth;
 }
 #header, #navCol, #mainContent{
     background-color: rgba(0,0,0,.5);
